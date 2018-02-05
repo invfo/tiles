@@ -2,36 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 
+import BACKGROUNDS from './backgrounds';
 import Row from './components/Row';
-
-import tileMarqueeBlue from './img/marquee-blue.jpg';
-import tileFloralTrellisBlue from './img/floral-trellis-blue.jpg';
-import tileChantillyBlue from './img/chantilly-blue.jpg';
-import tileStMaloBlue from './img/stmalo-blue.jpg';
-import tileLiberteBlue from './img/liberte-blue.jpg';
-import tileToulonBlue from './img/toulon-blue.jpg';
-import tileOrleansBlue from './img/orleans-blue.jpg';
-import tileVinnerieBlue from './img/vannerie-blue.jpg';
-import tileJosetteBlue from './img/josette-blue.jpg';
-import tileRivieraBlue from './img/riviera-blue.jpg';
-import tileFiligreeBlue from './img/filigree-blue.jpg';
-import tileChambrayBlue from './img/chambray-blue.jpg'
-
-
-const BACKGROUNDS = {
-  0: `url('${tileMarqueeBlue}')`,
-  1: `url('${tileFloralTrellisBlue}')`,
-  2: `url('${tileChantillyBlue}')`,
-  3: `url('${tileStMaloBlue}')`,
-  4: `url('${tileLiberteBlue}')`,
-  5: `url('${tileToulonBlue}')`,
-  6: `url('${tileOrleansBlue}')`,
-  7: `url('${tileVinnerieBlue}')`,
-  8: `url('${tileJosetteBlue}')`,
-  9: `url('${tileRivieraBlue}')`,
-  10: `url('${tileFiligreeBlue}')`,
-  11: `url('${tileChambrayBlue}')`,
-};
 
 
 const Legend = () => (
