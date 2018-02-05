@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 
+import Row from './components/Row';
+
 import tileMarqueeBlue from './img/marquee-blue.jpg';
 import tileFloralTrellisBlue from './img/floral-trellis-blue.jpg';
 import tileChantillyBlue from './img/chantilly-blue.jpg';
@@ -47,12 +49,6 @@ const Legend = () => (
     ))}
   </div>
 );
-
-
-const Row = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
 
 
 class Cell extends Component {
