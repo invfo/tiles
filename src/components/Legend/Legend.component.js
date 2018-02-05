@@ -4,7 +4,7 @@ import BACKGROUNDS from '../../backgrounds';
 
 
 const Legend = () => (
-  <div style={{marginLeft: '200px'}}>
+  <div>
     {[...Array(12).keys()].map((e) => (
       <div key={e} style={{display: 'flex', flexDirection: 'row'}}>
         <div>{e}</div>

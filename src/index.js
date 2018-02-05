@@ -17,11 +17,15 @@ class App extends Component {
     };
   }
 
+  onChange = (event) => {
+    this.setState({numberOfColumns: parseInt(event.target.value)});
+  };
+
   render() {
-    const rows = [...Array(this.state.numberOfRows).keys()].map(() => (
-      <Row>
-        {[...Array(this.state.numberOfColumns).keys()].map(() => (
-          <Cell></Cell>
+    const rows = [...Array(this.state.numberOfRows).keys()].map((r) => (
+      <Row key={r}>
+        {[...Array(this.state.numberOfColumns).keys()].map((c) => (
+          <Cell key={c}></Cell>
         ))}
       </Row>
     ));
@@ -31,6 +35,12 @@ class App extends Component {
           {rows}
         </div>
         <Legend />
+        <div>
+          <select value={this.state.numberOfColumns} onChange={this.onChange}>
+            {[...Array(9).keys()].map((i) => <option key={i} value={i}>{i}</option>)}
+          </select>
+          column(s)
+        </div>
       </div>
     );
   }
