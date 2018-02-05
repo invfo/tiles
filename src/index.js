@@ -106,7 +106,7 @@ class Cell extends Component {
 class App extends Component {
   render() {
     return (
-      <div style={{display: 'flex', flexDirection: 'row'}}>
+      <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'row'}}>
         <div style={{display: 'flex', flexDirection: 'column'}}>
           <Row>
             <Cell></Cell>
