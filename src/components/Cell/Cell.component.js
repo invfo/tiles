@@ -7,7 +7,7 @@ class Cell extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tile: 0,
+      tile: Math.floor(12 * Math.random()),
       hover: false,
     };
   };
@@ -25,6 +25,7 @@ class Cell extends Component {
   };
 
   render() {
+    console.log(localStorage);
     const style = {
       backgroundImage: BACKGROUNDS[this.state.tile],
       backgroundSize: 'cover',
@@ -37,11 +38,12 @@ class Cell extends Component {
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
       >
-        <select 
+        <select
           onChange={this.onChange}
           style={{
             display: this.state.hover ? 'inline-block' : 'none'
-          }} 
+          }}
+          value={this.state.tile}
         >
           {[...Array(12).keys()].map((e) => <option key={e} value={e}>{e}</option>)}
         </select>
