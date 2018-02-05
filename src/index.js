@@ -78,7 +78,6 @@ class Cell extends Component {
 
   render() {
     const style = {
-      border: '1px black solid',
       backgroundImage: BACKGROUNDS[this.state.tile],
       backgroundSize: 'cover',
       height: '200px',
