@@ -22,10 +22,17 @@ class App extends Component {
   };
 
   render() {
+    const cellSize = 1200.0/this.state.numberOfColumns < 200 ?
+      1200.0/this.state.numberOfColumns :
+      200;
     const rows = [...Array(this.state.numberOfRows).keys()].map((r) => (
       <Row key={r}>
         {[...Array(this.state.numberOfColumns).keys()].map((c) => (
-          <Cell key={c}></Cell>
+          <Cell
+            key={c}
+            size={cellSize}
+          >
+          </Cell>
         ))}
       </Row>
     ));

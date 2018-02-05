@@ -28,8 +28,8 @@ class Cell extends Component {
     const style = {
       backgroundImage: BACKGROUNDS[this.state.tile],
       backgroundSize: 'cover',
-      height: '200px',
-      width: '200px',
+      height: `${this.props.size}px`,
+      width: `${this.props.size}px`,
     };
     return (
       <div 
