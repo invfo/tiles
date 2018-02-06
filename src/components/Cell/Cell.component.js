@@ -25,7 +25,6 @@ class Cell extends Component {
   };
 
   render() {
-    console.log(localStorage);
     const style = {
       backgroundImage: BACKGROUNDS[this.state.tile],
       backgroundSize: 'cover',
