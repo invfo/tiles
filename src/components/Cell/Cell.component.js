@@ -7,7 +7,7 @@ class Cell extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tile: Math.floor(12 * Math.random()),
+      tile: props.tile,
       hover: false,
     };
   };

@@ -22,6 +22,7 @@ class App extends Component {
   };
 
   render() {
+    const randomizedTiles = [...Array(12).keys()].sort((e) => Math.random() - 0.5);
     const cellSize = 1200.0/this.state.numberOfColumns < 200 ?
       1200.0/this.state.numberOfColumns :
       200;
@@ -31,6 +32,7 @@ class App extends Component {
           <Cell
             key={c}
             size={cellSize}
+            tile={randomizedTiles[4*r + c]}
           >
           </Cell>
         ))}
