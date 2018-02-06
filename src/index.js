@@ -8,12 +8,20 @@ import Legend from './components/Legend';
 import Row from './components/Row';
 
 
+const NUMBER_OF_TILES_IN_SET = 12;
+const INITIAL_NUMBER_OF_COLUMNS = 4;
+const INITIAL_NUMBER_OF_ROWS = 3;
+
+const MAX_WIDTH = 1200.0;
+const MAX_TILE_WIDTH = 200;
+
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      numberOfColumns: 4,
-      numberOfRows: 3,
+      numberOfColumns: INITIAL_NUMBER_OF_COLUMNS,
+      numberOfRows: INITIAL_NUMBER_OF_ROWS,
     };
   }
 
@@ -22,17 +30,17 @@ class App extends Component {
   };
 
   render() {
-    const randomizedTiles = [...Array(12).keys()].sort((e) => Math.random() - 0.5);
-    const cellSize = 1200.0/this.state.numberOfColumns < 200 ?
-      1200.0/this.state.numberOfColumns :
-      200;
+    const randomizedTiles = [...Array(NUMBER_OF_TILES_IN_SET).keys()].sort((e) => Math.random() - 0.5);
+    const cellSize = MAX_WIDTH / this.state.numberOfColumns < MAX_TILE_WIDTH ?
+      MAX_WIDTH/this.state.numberOfColumns :
+      MAX_TILE_WIDTH;
     const rows = [...Array(this.state.numberOfRows).keys()].map((r) => (
       <Row key={r}>
         {[...Array(this.state.numberOfColumns).keys()].map((c) => (
           <Cell
             key={c}
             size={cellSize}
-            tile={randomizedTiles[4*r + c]}
+            tile={randomizedTiles[(INITIAL_NUMBER_OF_COLUMNS*r + c) % NUMBER_OF_TILES_IN_SET]}
           >
           </Cell>
         ))}
