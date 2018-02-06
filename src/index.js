@@ -29,8 +29,9 @@ class App extends Component {
     this.setState({numberOfColumns: parseInt(event.target.value)});
   };
 
+  randomizedTiles = [...Array(NUMBER_OF_TILES_IN_SET).keys()].sort((e) => Math.random() - 0.5);
+
   render() {
-    const randomizedTiles = [...Array(NUMBER_OF_TILES_IN_SET).keys()].sort((e) => Math.random() - 0.5);
     const cellSize = MAX_WIDTH / this.state.numberOfColumns < MAX_TILE_WIDTH ?
       MAX_WIDTH/this.state.numberOfColumns :
       MAX_TILE_WIDTH;
@@ -40,7 +41,7 @@ class App extends Component {
           <Cell
             key={c}
             size={cellSize}
-            tile={randomizedTiles[(INITIAL_NUMBER_OF_COLUMNS*r + c) % NUMBER_OF_TILES_IN_SET]}
+            tile={this.randomizedTiles[(INITIAL_NUMBER_OF_COLUMNS*r + c) % NUMBER_OF_TILES_IN_SET]}
           >
           </Cell>
         ))}
