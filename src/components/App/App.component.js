@@ -21,7 +21,6 @@ class App extends Component {
     const cellSize = MAX_WIDTH / this.props.numberOfColumns < MAX_TILE_WIDTH ?
       MAX_WIDTH/this.props.numberOfColumns :
       MAX_TILE_WIDTH;
-    console.log('props', this.props.layout);
     const rows = [...Array(this.props.numberOfRows).keys()].map((r) => (
       <Row key={r}>
         {[...Array(this.props.numberOfColumns).keys()].map((c) => (
