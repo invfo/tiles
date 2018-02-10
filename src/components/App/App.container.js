@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 
+import { changeNumberOfColumns } from './actions';
 import App from './App.component';
 
 
@@ -9,6 +10,12 @@ const mapStateToProps = state => ({
   numberOfColumns: state.get('numberOfColumns'),
 });
 
-const AppContainer = connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch) => ({
+  onChange: (event) => {
+    dispatch(changeNumberOfColumns(parseInt(event.target.value)));
+  }
+});
+
+const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App);
 
 export default AppContainer;
