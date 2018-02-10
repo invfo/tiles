@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
 
 import BACKGROUNDS from '../../backgrounds';
+import store from '../../store';
+import { changeBackground } from './actions';
 
 
 class Cell extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tile: props.tile,
       hover: false,
     };
-  };
-  
-  onChange = (event) => {
-    this.setState({tile: event.target.value})
   };
 
   onMouseEnter = () => {
@@ -26,7 +23,7 @@ class Cell extends Component {
 
   render() {
     const style = {
-      backgroundImage: BACKGROUNDS[this.state.tile],
+      backgroundImage: BACKGROUNDS[this.props.tile],
       backgroundSize: 'cover',
       height: `${this.props.size}px`,
       width: `${this.props.size}px`,
@@ -38,7 +35,9 @@ class Cell extends Component {
         onMouseLeave={this.onMouseLeave}
       >
         <select
-          onChange={this.onChange}
+          onChange={(event) => {
+            store.dispatch(changeBackground(this.props.row, this.props.column, parseInt(event.target.value)));
+          }}
           style={{
             display: this.state.hover ? 'inline-block' : 'none'
           }}

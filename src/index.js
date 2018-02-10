@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { Provider, connect } from 'react-redux';
 import styled from 'styled-components';
 
 import BACKGROUNDS from './backgrounds';
@@ -7,8 +8,9 @@ import Cell from './components/Cell';
 import Legend from './components/Legend';
 import Row from './components/Row';
 
+import store from './store';
 
-const NUMBER_OF_TILES_IN_SET = 12;
+
 const INITIAL_NUMBER_OF_COLUMNS = 4;
 const INITIAL_NUMBER_OF_ROWS = 3;
 
@@ -29,8 +31,6 @@ class App extends Component {
     this.setState({numberOfColumns: parseInt(event.target.value)});
   };
 
-  randomizedTiles = [...Array(NUMBER_OF_TILES_IN_SET).keys()].sort((e) => Math.random() - 0.5);
-
   render() {
     const cellSize = MAX_WIDTH / this.state.numberOfColumns < MAX_TILE_WIDTH ?
       MAX_WIDTH/this.state.numberOfColumns :
@@ -40,8 +40,10 @@ class App extends Component {
         {[...Array(this.state.numberOfColumns).keys()].map((c) => (
           <Cell
             key={c}
+            row={r}
+            column={c}
             size={cellSize}
-            tile={this.randomizedTiles[(INITIAL_NUMBER_OF_COLUMNS*r + c) % NUMBER_OF_TILES_IN_SET]}
+            tile={this.props.layout[r][c]}
           >
           </Cell>
         ))}
@@ -64,7 +66,15 @@ class App extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  layout: state.get('rows').toJS(),
+});
+
+const AppContainer = connect(mapStateToProps)(App);
+
 ReactDOM.render(
-  <App />,
+  <Provider store={store}>
+    <AppContainer />
+  </Provider>,
   document.getElementById('root')
 );
