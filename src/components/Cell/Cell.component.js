@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import BACKGROUNDS from '../../backgrounds';
 import store from '../../store';
-import { changeBackground } from './actions';
+import { changeBackground, switchBackground } from './actions';
 
 
 class Cell extends Component {
@@ -21,6 +21,13 @@ class Cell extends Component {
     this.setState({hover: false})
   };
 
+  onClick = (event) => {
+    console.log(event.target.tagName);
+    if (event.target.tagName !== 'SELECT') {
+      store.dispatch(switchBackground(this.props.row, this.props.column, this.props.tile))
+    }
+  };
+
   render() {
     const style = {
       backgroundImage: BACKGROUNDS[this.props.tile],
@@ -28,9 +35,11 @@ class Cell extends Component {
       height: `${this.props.size}px`,
       width: `${this.props.size}px`,
     };
+
     return (
-      <div 
+      <div
         style={style}
+        onClick={this.onClick}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
       >

@@ -27,6 +27,10 @@ let initialState = fromJS({
   rows,
   numberOfRows: INITIAL_NUMBER_OF_ROWS,
   numberOfColumns: INITIAL_NUMBER_OF_COLUMNS,
+  swapping: false,
+  swapRow: null,
+  swapColumn: null,
+  swapTile: null,
 });
 
 const mainReducer = (state = initialState, action) => {
@@ -34,6 +38,28 @@ const mainReducer = (state = initialState, action) => {
     return state.setIn(['rows', action.row, action.column], action.backgroundId);
   } else if (action.type === 'CHANGE_NUMBER_OF_COLUMNS') {
     return state.set('numberOfColumns', action.numberOfColumns);
+  } else if (action.type === 'SWITCH_BACKGROUND') {
+    if (state.get('swapping') === false) {
+      return state
+        .set('swapping', true)
+        .set('swapRow', action.row)
+        .set('swapColumn', action.column)
+        .set('swapTile', action.tile);
+    } else {
+      return state
+        .setIn(
+          ['rows', state.get('swapRow'), state.get('swapColumn')],
+          state.getIn(['rows', action.row, action.column])
+        )
+        .setIn(
+          ['rows', action.row, action.column],
+          state.get('swapTile')
+        )
+        .set('swapping', false)
+        .set('swapRow', null)
+        .set('swapColumn', null)
+        .set('swapTile', null);
+    }
   }
   return state;
 };
